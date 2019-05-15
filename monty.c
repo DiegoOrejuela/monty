@@ -8,8 +8,8 @@
  *
  * Return: 0 if it's success, and other value if not.
  */
-
-void push(stack_t **stack, unsigned int line_number);
+/* int n;*/
+/* void push(stack_t **stack, unsigned int line_number); */
 int main(int argc, char *argv[])
 {
 	instruction_t opcodes[] = {
@@ -38,13 +38,13 @@ int main(int argc, char *argv[])
 		ch_read = getline(&buffer, &sizebuf, file);
 		if (ch_read == -1)
 			return(1);
-		printf("%s", buffer);
 		lines[0] = strtok(buffer, " \n");
 		lines[1] = strtok(NULL, " \n");
 		for (i = 0; i < 1; i++)
 		{
 			if(strcmp(lines[0], opcodes[i].opcode) == 0)
 			{
+				n = atoi(lines[1]);
 				opcodes[i].f(&head, i);
 			}
 
@@ -54,9 +54,9 @@ int main(int argc, char *argv[])
 	return(0);
 }
 
-void push(stack_t **stack, unsigned int line_number)
-{
-	(void)stack;
-	(void)line_number;
-	printf("Estamos en la función PUSH");
-}
+/* void push(stack_t **stack, unsigned int line_number) */
+/* { */
+/* 	(void)stack; */
+/* 	(void)line_number; */
+/* 	printf("Estamos en la función PUSH"); */
+/* } */
