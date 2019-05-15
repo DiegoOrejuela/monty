@@ -8,55 +8,50 @@
  *
  * Return: 0 if it's success, and other value if not.
  */
-/* int n;*/
-/* void push(stack_t **stack, unsigned int line_number); */
 int main(int argc, char *argv[])
 {
 	instruction_t opcodes[] = {
-		{"push", push}/* , {"pall", pall}, {"pint", pint}, */
-		/* {"pop", pop}, {"swap", swap}, {"add", add}, */
-		/* {"nop", nop} */
+		{"push", push}, {"pall", pall}, {"pint", pint}, {"pop", pop},
+		{"swap", swap}, {"add", add}, {"nop", nop}
 	};
-
 	stack_t *head = NULL;
 	int i;
 	unsigned int counter = 1;
 	FILE *file;
 	ssize_t ch_read = 0;
-	char *buffer;
-	char *lines[2];
+	char *buffer, *lines[2];
 	size_t sizebuf = 0;
-	(void)argc;
 
-	file = fopen(argv[1], "r");
-	if (file == NULL)
-	{
-		return (1);
-	}
-	while(1)
+	file = check_file(argc, argv[1]);
+	while (1)
 	{
 		ch_read = getline(&buffer, &sizebuf, file);
 		if (ch_read == -1)
-			return(1);
+		{
+			free(buffer), free_stack(head);
+			fclose(file);
+			return (0);
+		}
 		lines[0] = strtok(buffer, " \n");
 		lines[1] = strtok(NULL, " \n");
-		for (i = 0; i < 1; i++)
+		for (i = 0; i < 7; i++)
 		{
-			if(strcmp(lines[0], opcodes[i].opcode) == 0)
+			if (strcmp(lines[0], opcodes[i].opcode) == 0)
 			{
-				n = atoi(lines[1]);
-				opcodes[i].f(&head, i);
+				n = lines[1];
+				opcodes[i].f(&head, counter);
+				break;
 			}
-
+		}
+		if (i == 7)
+		{
+			fprintf(stderr, "L%d: unknown instruction %s\n", counter, lines[0]);
+			free(buffer);
+			free_stack(head);
+			fclose(file);
+			exit(EXIT_FAILURE);
 		}
 		counter++;
 	}
-	return(0);
+	return (0);
 }
-
-/* void push(stack_t **stack, unsigned int line_number) */
-/* { */
-/* 	(void)stack; */
-/* 	(void)line_number; */
-/* 	printf("Estamos en la función PUSH"); */
-/* } */
