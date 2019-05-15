@@ -1,9 +1,10 @@
 #include "monty.h"
 /**
- * print_dlistint - prints all the elements of a dlistint_t list.
- * @h: double linked list dlistint_t.
+ * add - adds the top two elements of the stack.
+ * @stack: double linked list stack_t.
+ * @line_number: line of opcode in the file.m.
  *
- * Return: amount of elements in linked list.
+ * Return: nothing.
  */
 void add(stack_t **stack, unsigned int line_number)
 {
@@ -11,7 +12,7 @@ void add(stack_t **stack, unsigned int line_number)
 
 	if (stack_len(*stack) < 2)
 	{
-		dprintf(2, "L%lu: can't add, stack too short", line_number);
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
