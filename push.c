@@ -8,10 +8,13 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new;
 	int data;
+	int check;
 
 	if (n != NULL)
+		check = check_int(n);
+	if (check == 1)
 		data = atoi(n);
-	if (data == 0 || n == NULL)
+	if (check == 0 || n == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
@@ -28,4 +31,21 @@ void push(stack_t **stack, unsigned int line_number)
 	if (*stack != NULL)
 		(*stack)->prev = new;
 	*stack = new;
+}
+/**
+ * check_int - check if a string contain just a int number
+ * @str: the string to check
+ * Return: 1 if is an int, 0 otherwise
+ */
+int check_int(char *str)
+{
+	int i = 0;
+
+	while (str[i] != '\0')
+	{
+		if ((str[i] > 57 || str[i] < 48) && str[0] != 45)
+			return (0);
+		i++;
+	}
+	return (1);
 }
