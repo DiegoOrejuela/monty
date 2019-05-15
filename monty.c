@@ -32,8 +32,8 @@ int main(int argc, char *argv[])
 			fclose(file);
 			return (0);
 		}
-		lines[0] = strtok(buffer, " \n");
-		lines[1] = strtok(NULL, " \n");
+		lines[0] = strtok(buffer, " \t\n");
+		lines[1] = strtok(NULL, " \t\n");
 		for (i = 0; i < 7; i++)
 		{
 			if (lines[0] == NULL)
