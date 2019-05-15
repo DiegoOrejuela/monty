@@ -1,8 +1,8 @@
 #include "monty.h"
 
 /**
- * dlistint_len - returns the number of elements in a linked dlistint_t list.
- * @h: double linked list dlistint_t.
+ * stack_len - returns the number of elements in a linked stack list.
+ * @h: double linked list stack_t.
  *
  * Return: amount of elements in linked list.
  */
