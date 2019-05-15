@@ -8,7 +8,7 @@
 #include <string.h>
 
 /* extern int n;*/
-int n;
+char *n;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -38,6 +38,7 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+FILE *check_file(int argc, char *file);
 void push(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
