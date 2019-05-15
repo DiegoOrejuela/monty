@@ -24,12 +24,10 @@ int main(int argc, char *argv[])
 
 	file = check_file(argc, argv[1]);
 	while (1)
-	{
-		ch_read = getline(&buffer, &sizebuf, file);
+	{ch_read = getline(&buffer, &sizebuf, file);
 		if (ch_read == -1)
 		{
-			free(buffer), free_stack(head);
-			fclose(file);
+			free(buffer), free_stack(head), fclose(file);
 			return (0);
 		}
 		lines[0] = strtok(buffer, " \t\n");
@@ -40,18 +38,14 @@ int main(int argc, char *argv[])
 				break;
 			if (strcmp(lines[0], opcodes[i].opcode) == 0)
 			{
-				n = lines[1];
-				opcodes[i].f(&head, counter);
+				n = lines[1], opcodes[i].f(&head, counter);
 				break;
 			}
 		}
 		if (i == 7)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", counter, lines[0]);
-			free(buffer);
-			free_stack(head);
-			fclose(file);
-			exit(EXIT_FAILURE);
+			free(buffer), free_stack(head), fclose(file), exit(EXIT_FAILURE);
 		}
 		counter++;
 	}
