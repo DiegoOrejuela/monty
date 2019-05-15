@@ -15,6 +15,8 @@ void push(stack_t **stack, unsigned int line_number)
 	new->n = n;
 	new->prev = NULL;
 	new->next = *stack;
+	if (*stack != NULL)
+		(*stack)->prev = new;
 	*stack = new;
-	printf("node add %d", (*stack)->n);
+	printf("node add %d\n", (*stack)->n);
 }
