@@ -1,9 +1,10 @@
 #include "monty.h"
 /**
- * print_dlistint - prints all the elements of a dlistint_t list.
- * @h: double linked list dlistint_t.
+ * pop - removes the top element of the stack.
+ * @stack: double linked list dlistint_t.
+ * @line_number: line number of command instruction.
  *
- * Return: amount of elements in linked list.
+ * Return: nothing.
  */
 void pop(stack_t **stack, unsigned int line_number)
 {
@@ -11,7 +12,7 @@ void pop(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL || *stack == NULL)
 	{
-		dprintf(2, "L%d: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
