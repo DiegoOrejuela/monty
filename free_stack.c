@@ -13,6 +13,6 @@ void free_stack(stack_t *head)
 		temp = head;
 		head = temp->next;
 		free(temp);
-		free_list(head);
+		free_stack(head);
 	}
 }

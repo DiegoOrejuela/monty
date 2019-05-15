@@ -16,9 +16,9 @@ FILE *check_file(int argc, char *file)
 		exit(EXIT_FAILURE);
 	}
 	path_file = fopen(file, "r");
-	if (file == NULL)
+	if (path_file == NULL)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", file);
 		exit(EXIT_FAILURE);
 	}
 	return (path_file);

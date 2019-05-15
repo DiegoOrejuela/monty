@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 		ch_read = getline(&buffer, &sizebuf, file);
 		if (ch_read == -1)
 		{
-			free(buffer), free_stack(stack);
+			free(buffer), free_stack(head);
 			fclose(file);
 			return (0);
 		}
@@ -40,11 +40,15 @@ int main(int argc, char *argv[])
 			{
 				n = lines[1];
 				opcodes[i].f(&head, counter);
+				break;
 			}
 		}
-		if (i == 4)
+		if (i == 7)
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", counter, argv[0]);
+			fprintf(stderr, "L%d: unknown instruction %s\n", counter, lines[0]);
+			free(buffer);
+			free_stack(head);
+			fclose(file);
 			exit(EXIT_FAILURE);
 		}
 		counter++;
