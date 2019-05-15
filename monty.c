@@ -36,6 +36,8 @@ int main(int argc, char *argv[])
 		lines[1] = strtok(NULL, " \n");
 		for (i = 0; i < 7; i++)
 		{
+			if (lines[0] == NULL)
+				break;
 			if (strcmp(lines[0], opcodes[i].opcode) == 0)
 			{
 				n = lines[1];
