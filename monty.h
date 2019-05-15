@@ -49,4 +49,5 @@ size_t stack_len(const stack_t *h);
 void swap(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *head);
 int check_int(char *str);
+void sub(stack_t **stack, unsigned int line_number);
 #endif /* MONTY_H */

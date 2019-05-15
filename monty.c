@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 {
 	instruction_t opcodes[] = {
 		{"push", push}, {"pall", pall}, {"pint", pint}, {"pop", pop},
-		{"swap", swap}, {"add", add}, {"nop", nop}
+		{"swap", swap}, {"add", add}, {"nop", nop}, {"sub", sub}
 	};
 	stack_t *head = NULL;
 	int i;
@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 		}
 		lines[0] = strtok(buffer, " \t\n");
 		lines[1] = strtok(NULL, " \t\n");
-		for (i = 0; i < 7; i++)
+		for (i = 0; i < 8; i++)
 		{
 			if (lines[0] == NULL)
 				break;
@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 				break;
 			}
 		}
-		if (i == 7)
+		if (i == 8)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", counter, lines[0]);
 			free(buffer), free_stack(head), fclose(file), exit(EXIT_FAILURE);
