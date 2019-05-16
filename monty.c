@@ -27,12 +27,7 @@ int main(int argc, char *argv[])
 	while ((ch_read = getline(&buffer, &sizebuf, file)) != -1)
 	{
 		lines[0] = strtok(buffer, " \t\n");
-<<<<<<< HEAD
 		if (lines[0] != NULL)
-=======
-		lines[1] = strtok(NULL, " \t\n");
-		for (i = 0; i < 9; i++)
->>>>>>> a9c1531cedfb3578ae66b1f8a333168f341d8d98
 		{
 			if (lines[0][0] != '#')
 			{
@@ -53,14 +48,6 @@ int main(int argc, char *argv[])
 				}
 			}
 		}
-<<<<<<< HEAD
-=======
-		if (i == 9)
-		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", counter, lines[0]);
-			free(buffer), free_stack(head), fclose(file), exit(EXIT_FAILURE);
-		}
->>>>>>> a9c1531cedfb3578ae66b1f8a333168f341d8d98
 		counter++;
 	}
 	_free(buffer, head, file);
