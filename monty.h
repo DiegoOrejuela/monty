@@ -8,7 +8,7 @@
 #include <string.h>
 
 /* extern int n;*/
-char *n;
+char *n[2];
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -56,5 +56,7 @@ void mod(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
+void stack(stack_t **stack, unsigned int line_number);
+void queue(stack_t **stack, unsigned int line_number);
 stack_t *add_end(stack_t **head, const int n);
 #endif /* MONTY_H */

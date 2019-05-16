@@ -10,11 +10,11 @@ void push(stack_t **stack, unsigned int line_number)
 	int data;
 	int check;
 
-	if (n != NULL)
-		check = check_int(n);
+	if (n[0] != NULL)
+		check = check_int(n[0]);
 	if (check == 1)
-		data = atoi(n);
-	if (check == 0 || n == NULL)
+		data = atoi(n[0]);
+	if (check == 0 || n[0] == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
@@ -25,12 +25,19 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	new->n = data;
-	new->prev = NULL;
-	new->next = *stack;
-	if (*stack != NULL)
-		(*stack)->prev = new;
-	*stack = new;
+	if (strcmp(n[1], "stack") == 0)
+	{
+		new->n = data;
+		new->prev = NULL;
+		new->next = *stack;
+		if (*stack != NULL)
+			(*stack)->prev = new;
+		*stack = new;
+	}
+	else
+	{
+		add_end(stack, data);
+	}
 }
 /**
  * check_int - check if a string contain just a int number

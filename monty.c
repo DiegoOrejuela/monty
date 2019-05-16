@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
 	instruction_t opcodes[] = {
 		{"push", push}, {"pall", pall}, {"pint", pint}, {"pop", pop},
 		{"swap", swap}, {"add", add}, {"nop", nop}, {"sub", sub}, {"mul", mul},
+		{"queue", queue}, {"stack", stack},
 		{"div", _div}, {"mod", mod}, {"pchar", pchar}, {"pstr", pstr}, {"rotl", rotl}
 	};
 	stack_t *head = NULL;
@@ -23,7 +24,7 @@ int main(int argc, char *argv[])
 	ssize_t ch_read = 0;
 	char *buffer, *lines[2];
 	size_t sizebuf = 0;
-
+	n[1] = "stack";
 	file = check_file(argc, argv[1]);
 	while ((ch_read = getline(&buffer, &sizebuf, file)) != -1)
 	{
@@ -33,15 +34,15 @@ int main(int argc, char *argv[])
 			if (lines[0][0] != '#')
 			{
 				lines[1] = strtok(NULL, " \t\n");
-				for (i = 0; i < 14; i++)
+				for (i = 0; i < 15; i++)
 				{
 					if (strcmp(lines[0], opcodes[i].opcode) == 0)
 					{
-						n = lines[1], opcodes[i].f(&head, counter);
+						n[0] = lines[1], opcodes[i].f(&head, counter);
 						break;
 					}
 				}
-				if (i == 14)
+				if (i == 15)
 				{
 					fprintf(stderr, "L%d: unknown instruction %s\n", counter, lines[0]);
 					_free(buffer, head, file);
