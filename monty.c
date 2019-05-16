@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	instruction_t opcodes[] = {
 		{"push", push}, {"pall", pall}, {"pint", pint}, {"pop", pop},
 		{"swap", swap}, {"add", add}, {"nop", nop}, {"sub", sub}, {"mul", mul},
-		{"div", _div}, {"mod", mod}, {"pchar", pchar}
+		{"div", _div}, {"mod", mod}, {"pchar", pchar}, {"pstr", pstr}
 	};
 	stack_t *head = NULL;
 	unsigned int counter = 1, i;
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 			if (lines[0][0] != '#')
 			{
 				lines[1] = strtok(NULL, " \t\n");
-				for (i = 0; i < 12; i++)
+				for (i = 0; i < 13; i++)
 				{
 					if (strcmp(lines[0], opcodes[i].opcode) == 0)
 					{
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 						break;
 					}
 				}
-				if (i == 12)
+				if (i == 13)
 				{
 					fprintf(stderr, "L%d: unknown instruction %s\n", counter, lines[0]);
 					_free(buffer, head, file);
