@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
 	instruction_t opcodes[] = {
 		{"push", push}, {"pall", pall}, {"pint", pint}, {"pop", pop},
 		{"swap", swap}, {"add", add}, {"nop", nop}, {"sub", sub}, {"mul", mul},
-		{"div", _div}, {"mod", mod}, {"pchar", pchar}, {"pstr", pstr},
-		{"queue", queue}, {"stack", stack}
+		{"queue", queue}, {"stack", stack},
+		{"div", _div}, {"mod", mod}, {"pchar", pchar}, {"pstr", pstr}, {"rotl", rotl}
 	};
 	stack_t *head = NULL;
 	unsigned int counter = 1, i;
