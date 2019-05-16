@@ -1,5 +1,7 @@
 #include "monty.h"
 
+void _free(char *buffer, stack_t *head, FILE *file);
+
 /**
  * main - Function
  * @argc: number of arguments.
@@ -15,39 +17,54 @@ int main(int argc, char *argv[])
 		{"swap", swap}, {"add", add}, {"nop", nop}, {"sub", sub}
 	};
 	stack_t *head = NULL;
-	int i;
-	unsigned int counter = 1;
+	unsigned int counter = 1, i;
 	FILE *file;
 	ssize_t ch_read = 0;
 	char *buffer, *lines[2];
 	size_t sizebuf = 0;
 
 	file = check_file(argc, argv[1]);
-	while (1)
-	{ch_read = getline(&buffer, &sizebuf, file);
-		if (ch_read == -1)
-		{
-			free(buffer), free_stack(head), fclose(file);
-			return (0);
-		}
+	while ((ch_read = getline(&buffer, &sizebuf, file)) != -1)
+	{
 		lines[0] = strtok(buffer, " \t\n");
-		lines[1] = strtok(NULL, " \t\n");
-		for (i = 0; i < 8; i++)
+		if (lines[0] != NULL)
 		{
-			if (lines[0] == NULL)
-				break;
-			if (strcmp(lines[0], opcodes[i].opcode) == 0)
+			if (lines[0][0] != '#')
 			{
-				n = lines[1], opcodes[i].f(&head, counter);
-				break;
+				lines[1] = strtok(NULL, " \t\n");
+				for (i = 0; i < 8; i++)
+				{
+					if (strcmp(lines[0], opcodes[i].opcode) == 0)
+					{
+						n = lines[1], opcodes[i].f(&head, counter);
+						break;
+					}
+				}
+				if (i == 8)
+				{
+					fprintf(stderr, "L%d: unknown instruction %s\n", counter, lines[0]);
+					_free(buffer, head, file);
+					exit(EXIT_FAILURE);
+				}
 			}
-		}
-		if (i == 8)
-		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", counter, lines[0]);
-			free(buffer), free_stack(head), fclose(file), exit(EXIT_FAILURE);
 		}
 		counter++;
 	}
+	_free(buffer, head, file);
 	return (0);
+}
+
+/**
+ * _free - liberate the buffer, stack and close the file.
+ * @buffer: buffer on line.
+ * @head: stack type stack_t;
+ * @file: file steam open.
+ *
+ * Return: nothing.
+ */
+void _free(char *buffer, stack_t *head, FILE *file)
+{
+	free(buffer);
+	free_stack(head);
+	fclose(file);
 }
