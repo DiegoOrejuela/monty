@@ -18,7 +18,7 @@ void rotr(stack_t **stack, unsigned int line_number)
 	for (left = *stack, i = 0; (*left).next != NULL; left = (*left).next, i++)
 	{}
 
-	for (j = 0; j < i / 2; j++, rigth = (*rigth).next, left = (*left).prev)
+	for (j = -1; j < i / 2; j++, rigth = (*rigth).next, left = (*left).prev)
 	{
 		n_temp = (*left).n;
 
