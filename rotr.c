@@ -9,20 +9,16 @@
  */
 void rotr(stack_t **stack, unsigned int line_number)
 {
-	stack_t *rigth, *left;
-	int i, j, n_temp;
-	(void)line_number;
+	stack_t *left;
+	int n_temp;
 
-	rigth = *stack;
 
-	for (left = *stack, i = 0; (*left).next != NULL; left = (*left).next, i++)
+	for (left = *stack; (*left).next != NULL; left = (*left).next)
 	{}
 
-	for (j = -1; j < i / 2; j++, rigth = (*rigth).next, left = (*left).prev)
-	{
-		n_temp = (*left).n;
+	n_temp = (*left).n;
 
-		(*left).n = (*rigth).n;
-		(*rigth).n = n_temp;
-	}
+	(*(*left).prev).next = NULL;
+	n[0] = convertd(n_temp);
+	push(stack, line_number);
 }

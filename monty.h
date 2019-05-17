@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdarg.h>
 
 /* extern int n;*/
 char *n[2];
@@ -38,6 +39,7 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+char *convertd(int num);
 FILE *check_file(int argc, char *file);
 void push(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
