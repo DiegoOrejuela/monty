@@ -24,8 +24,8 @@ void pstr(stack_t **stack, unsigned int line_number)
 	while (aux != NULL && val > 0 && val < 128)
 	{
 		printf("%c", (aux)->n);
-		aux = aux->next;
 		val = (aux)->n;
+		aux = aux->next;
 	}
 	printf("\n");
 }
