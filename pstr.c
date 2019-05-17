@@ -14,10 +14,13 @@ void pstr(stack_t **stack, unsigned int line_number)
 
 	aux = (*stack);
 	if (aux == NULL)
-		val = 0;
-	else
-		val = (aux)->n;
-
+	{
+		printf("\n");
+		return;
+	}
+	val = (aux)->n;
+	if (val == 0)
+		return;
 	while (aux != NULL && val > 0 && val < 128)
 	{
 		printf("%c", (aux)->n);
